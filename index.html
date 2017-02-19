@@ -241,6 +241,106 @@
         })
     });
 
+
+    $('#guests').click(function () {
+        showDialog({
+        title: 'customize your email!',
+        name: 'your roommate\'s name',
+        number: 'number of guests',
+        category: 'what guests are coming for',
+        time: 'on this date and time',
+        
+        negative: {
+            title: 'cancel'
+        },
+        positive: {
+            title: 'preview email',
+            onClick: function(e) {
+                var n = $("#name").val()
+                var d = $("#number").val()
+                var c = $("#category").val()
+                var t = $("#time").val()
+            
+                showDialog({
+                    title: 'preview your email:',
+                    email: "Hi " + $("#name").val() + "," +
+                        "<br><br>On this date and time: " + $("#time").val() + "." +
+                        "<br><br>" + $("#number").val() + " guest(s) will be coming for " +  
+                        $("#category").val() + "!" +
+                        
+                        "<br><br> Let me know if this is okay! Thank you!",
+                    negative: {
+                        title: 'cancel'
+                    },
+                    positive: {
+                        title: 'send email',
+                        onClick: function(e) {
+                            emailjs.send("default","supplies-reminder",{
+                                name: n,
+                                number: d,
+                                category: c,
+                                time: t,
+                            })
+                            .then(function(response) {
+                                alert("Email sent!");
+                            }, function(err) {
+                                alert("Email error!");
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        })
+    });
+
+    $('#events').click(function () {
+        showDialog({
+        title: 'customize your email!',
+        name: 'your roommate\'s name',
+        category: 'I will be doing this/going to',
+        time: 'from this date to this date',
+        
+        negative: {
+            title: 'cancel'
+        },
+        positive: {
+            title: 'preview email',
+            onClick: function(e) {
+                var n = $("#name").val()
+                var c = $("#category").val()
+                var t = $("#time").val()
+            
+                showDialog({
+                    title: 'preview your email:',
+                    email: "Hi " + $("#name").val() + "," +
+                        "<br><br>I will be " + $("#category").val() + "." +
+                        "<br><br>" + " from " +  $("#time").val() + 
+                        "<br><br> Just wanted to let you know! Thank you!",
+                    negative: {
+                        title: 'cancel'
+                    },
+                    positive: {
+                        title: 'send email',
+                        onClick: function(e) {
+                            emailjs.send("default","supplies-reminder",{
+                                name: n,
+                                category: c,
+                                time: t,
+                            })
+                            .then(function(response) {
+                                alert("Email sent!");
+                            }, function(err) {
+                                alert("Email error!");
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        })
+    });
+
     </script>
 </body>
 </html>
