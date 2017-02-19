@@ -120,7 +120,7 @@
             positivity!
         </div>
         <div class="mdl-card__actions mdl-card--border">
-            <a id="appreciate" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+            <a id="support" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
                 send a note of appreciation
             </a>
         </div>
@@ -341,6 +341,143 @@
         })
     });
 
+    $('#chores').click(function () {
+        showDialog({
+        title: 'customize your email!',
+        name: 'your roommate\'s name',
+        category: 'Reminder to...',
+        time: 'by this date',
+        
+        negative: {
+            title: 'cancel'
+        },
+        positive: {
+            title: 'preview email',
+            onClick: function(e) {
+                var n = $("#name").val()
+                var c = $("#category").val()
+                var t = $("#time").val()
+            
+                showDialog({
+                    title: 'preview your email:',
+                    email: "Hi " + $("#name").val() + "," +
+                        "<br><br>This is just a reminder to " + $("#category").val() + "." +
+                        "<br><br>" + " by " +  $("#time").val() + 
+                        "<br><br> Just wanted to let you know! Thank you!",
+                    negative: {
+                        title: 'cancel'
+                    },
+                    positive: {
+                        title: 'send email',
+                        onClick: function(e) {
+                            emailjs.send("default","supplies-reminder",{
+                                name: n,
+                                category: c,
+                                time: t,
+                            })
+                            .then(function(response) {
+                                alert("Email sent!");
+                            }, function(err) {
+                                alert("Email error!");
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        })
+    });
+
+    $('#support').click(function () {
+        showDialog({
+        title: 'customize your email!',
+        name: 'your roommate\'s name',
+        category: 'write a note of appreciation',
+        
+        negative: {
+            title: 'cancel'
+        },
+        positive: {
+            title: 'preview email',
+            onClick: function(e) {
+                var n = $("#name").val()
+                var c = $("#category").val()
+            
+                showDialog({
+                    title: 'preview your email:',
+                    email: "Hi " + $("#name").val() + "," +
+                        "<br><br>Just wanted to say " + $("#category").val() + "!",
+                    negative: {
+                        title: 'cancel'
+                    },
+                    positive: {
+                        title: 'send email',
+                        onClick: function(e) {
+                            emailjs.send("default","supplies-reminder",{
+                                name: n,
+                                category: c,
+                                time: t,
+                            })
+                            .then(function(response) {
+                                alert("Email sent!");
+                            }, function(err) {
+                                alert("Email error!");
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        })
+    });
+
+     $('#tlc').click(function () {
+        showDialog({
+        title: 'customize your email!',
+        name: 'your roommate\'s name',
+        category: 'join me in doing this/going to',
+        time: 'from this date to this date',
+        
+        negative: {
+            title: 'cancel'
+        },
+        positive: {
+            title: 'preview email',
+            onClick: function(e) {
+                var n = $("#name").val()
+                var c = $("#category").val()
+                var t = $("#time").val()
+            
+                showDialog({
+                    title: 'preview your email:',
+                    email: "Hi " + $("#name").val() + "," +
+                        "<br><br>Do you want to join me in doing this/going to " + $("#category").val() + "?" +
+                        "<br><br>" + " from " +  $("#time").val() + 
+                        "<br><br> Let me know if you are interested! Thanks!",
+                    negative: {
+                        title: 'cancel'
+                    },
+                    positive: {
+                        title: 'send email',
+                        onClick: function(e) {
+                            emailjs.send("default","supplies-reminder",{
+                                name: n,
+                                category: c,
+                                time: t,
+                            })
+                            .then(function(response) {
+                                alert("Email sent!");
+                            }, function(err) {
+                                alert("Email error!");
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        })
+    });
+    
     </script>
 </body>
 </html>
