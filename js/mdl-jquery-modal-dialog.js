@@ -27,6 +27,7 @@ function showDialog(options) {
         duration: null,
         appreciation: null,
         email: null,
+        number: null,
 
         // toggle state
         neutral: false,
@@ -99,6 +100,13 @@ function showDialog(options) {
              '<input class="mdl-textfield__input" type="text" id="appreciation">' +
              '<label class="mdl-textfield__label" for="appreciation">' + 
              options.appreciation + 
+             '</label></div></div>').appendTo(content);
+    }
+    if (options.number != null) {
+        $('<div class="mdl-card__supporting-text"><div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">' +
+             '<input class="mdl-textfield__input" type="text" id="number">' +
+             '<label class="mdl-textfield__label" for="number">' + 
+             options.number + 
              '</label></div></div>').appendTo(content);
     }
 
