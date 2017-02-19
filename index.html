@@ -8,7 +8,7 @@
 
     <!--MDL stylesheet-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-teal.min.css" />
     <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
      <!--animate.css stylesheet-->
@@ -34,12 +34,13 @@
         <div class="title">
          <h1>~ remind your roommate! ~</h1>
         </div>
+    <div class="cards">
     <div class="clean mdl-card mdl-shadow--2dp task-card">
         <div class="mdl-card__title mdl-card--expand">
             <div class="mdl-card__title-text">clean</div>
         </div>
         <div class="mdl-card__supporting-text">
-            bathroom inspections coming up?
+            bathroom inspections coming up? 🚽
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="clean" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
@@ -52,11 +53,11 @@
             <div class="mdl-card__title-text">pay</div>
         </div>
         <div class="mdl-card__supporting-text">
-            rent payment due soon?
+            rent payment due soon? 💸
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="pay" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
-                send a venmo charge
+                send a reminder email
             </a>
         </div>
     </div>
@@ -65,7 +66,7 @@
             <div class="mdl-card__title-text">supplies</div>
         </div>
         <div class="mdl-card__supporting-text">
-            running out of groceries?
+            running out of groceries? 🍎
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="supplies" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
@@ -78,7 +79,7 @@
             <div class="mdl-card__title-text">chores</div>
         </div>
         <div class="mdl-card__supporting-text">
-            trash bins overflowing?
+            trash bins overflowing? 🗑
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="chores" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
@@ -91,7 +92,7 @@
             <div class="mdl-card__title-text">guests</div>
         </div>
         <div class="mdl-card__supporting-text">
-            hosting a party?
+            hosting a party? 🎉
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="guests" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
@@ -104,7 +105,7 @@
             <div class="mdl-card__title-text">events</div>
         </div>
         <div class="mdl-card__supporting-text">
-            important exams coming up?
+            important exams coming up? 📚
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="events" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
@@ -117,7 +118,7 @@
             <div class="mdl-card__title-text">support</div>
         </div>
         <div class="mdl-card__supporting-text">
-            positivity!
+            everyone loves positivity! ☀️
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="support" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
@@ -130,13 +131,14 @@
             <div class="mdl-card__title-text">bonding</div>
         </div>
         <div class="mdl-card__supporting-text">
-            need some tlc?
+            need some tlc? ❤️
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a id="tlc" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
                 send a reminder email
             </a>
         </div>
+    </div>
     </div>
     </main>
     <!--modals-->
@@ -165,6 +167,56 @@
                     email: "Hi " + $("#name").val() + "," +
                         "<br><br> In " + $("#time").val() + " days, it will be your turn to clean the " + 
                         $("#category").val() + "." + 
+                        "<br><br> Thank you!",
+                    negative: {
+                        title: 'cancel'
+                    },
+                    positive: {
+                        title: 'send email',
+                        onClick: function(e) {
+                            emailjs.send("default","cleaning-reminder",{
+                                name: n,
+                                time: t,
+                                category: c
+                            })
+                            .then(function(response) {
+                                alert("Email sent!");
+                            }, function(err) {
+                                alert("Email error!");
+                            });
+                        }
+                    }
+                });
+            }
+        }
+        })
+    });
+
+    $('#pay').click(function () {
+        showDialog({
+        title: 'customize your email!',
+        name: 'your roommate\'s name',
+        category: 'reason for payment',
+        amount: 'charge amount',
+        payment: 'your venmo username',
+        time: 'please pay by this date',
+        negative: {
+            title: 'cancel'
+        },
+        positive: {
+            title: 'preview email',
+            onClick: function(e) {
+                var n = $("#name").val()
+                var c = $("#category").val()
+                var a = $("#amount").val()
+                var p = $("#payment").val()
+                var t = $("#time").val()
+                showDialog({
+                    title: 'preview your email:',
+                    email: "Hi " + $("#name").val() + "," +
+                        "<br><br> Please pay " + $("#amount").val() + " for " + $("#category").val() + 
+                            " to my Venmo account @" + $("#payment").val() + " by " +
+                        $("#time").val() + "." + 
                         "<br><br> Thank you!",
                     negative: {
                         title: 'cancel'
@@ -345,7 +397,7 @@
         showDialog({
         title: 'customize your email!',
         name: 'your roommate\'s name',
-        category: 'Reminder to...',
+        category: 'reminder to...',
         time: 'by this date',
         
         negative: {

@@ -1,12 +1,14 @@
-
+.cards {
+    margin-left: 1.85vw;
+}
 h1 {
     font-family: 'Pacifico', cursive;
     text-align: center;
 }
 
 .task-card.mdl-card {
-    width: 320px;
-    height: 320px;
+    width: 310px;
+    height: 310px;
     float: left;
     margin: 1rem;
     position: relative;
@@ -82,11 +84,26 @@ h1 {
 .mdl-card__title > .mdl-card__title-text {
     font-size: 40px;
 }
-.mdl-card__actions > .mdl-button {
-    color: #207178;
+
+.mdl-card__supporting-text {
+    font-size: 15px;
 }
+
+.mdl-card__actions > .mdl-button {
+    color: #51A6B0;
+}
+
 body {
     padding: 20px;
     background: #fafafa;
     position: relative;
+}
+
+.title {
+    color: gray;
+}
+
+.title h1 {
+    margin-top: -5px;
+    margin-bottom: 15px;
 }

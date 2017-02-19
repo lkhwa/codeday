@@ -22,6 +22,7 @@ function showDialog(options) {
         name: null,
         category: null,
         time: null,
+        amount: null,
         payment: null,
         budget: null,
         duration: null,
@@ -72,6 +73,13 @@ function showDialog(options) {
              '<input class="mdl-textfield__input" type="text" id="time">' +
              '<label class="mdl-textfield__label" for="time">' + 
              options.time + 
+             '</label></div></div>').appendTo(content);
+    }
+    if (options.amount != null) {
+        $('<div class="mdl-card__supporting-text"><div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">' +
+             '<input class="mdl-textfield__input" type="text" id="amount">' +
+             '<label class="mdl-textfield__label" for="amount">' + 
+             options.amount + 
              '</label></div></div>').appendTo(content);
     }
     if (options.payment != null) {
