@@ -39,6 +39,13 @@ h1 {
         90% 90% no-repeat 
         #FF9666;
 }
+.chores.task-card > .mdl-card__title {
+    color: #fff;
+    background:
+        url('../img/chores.png') 
+        95% 100% no-repeat 
+        #FFE184;
+}
 
 .guests.task-card > .mdl-card__title {
     color: #fff;
@@ -52,6 +59,22 @@ h1 {
     color: #fff;
     background:
         url('../img/events.png') 
+        90% 90% no-repeat 
+        #FF9666;
+}
+
+.appreciate.task-card > .mdl-card__title {
+    color: #fff;
+    background:
+        url('../img/appreciate.png') 
+        100% 100% no-repeat 
+        #FFE184;
+}
+
+.tlc.task-card > .mdl-card__title {
+    color: #fff;
+    background:
+        url('../img/bond.png') 
         90% 90% no-repeat 
         #FF9666;
 }
